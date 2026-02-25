@@ -42,7 +42,8 @@ const cancelOrder = asyncHandler(async (req, res) => {
         if (order.status === "cancelled") {
             return res.status(400).json({ success: false, message: "Order already cancelled" });
         }
-        if (order.userId !== req.user._id) {
+
+        if (order.userId.toString() !== req.user._id.toString()) {
             return res.status(403).json({ success: false, message: "You are not authorized to cancel this order" });
         }
         if (status === "cancelled") {
@@ -53,8 +54,6 @@ const cancelOrder = asyncHandler(async (req, res) => {
     } catch (error) {
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
-
-
 
 });
 
