@@ -1,15 +1,482 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>E Shop Rest API</title>
-</head>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 960px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
 
-<body>
-    <h1>Hello World</h1>
-   
-</body>
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+      }
 
+      h1 {
+        border-bottom: 2px solid #f2f2f2;
+        padding-bottom: 10px;
+      }
+
+      h2 {
+        border-bottom: 1px solid #f2f2f2;
+        padding-bottom: 8px;
+        margin-top: 2.5rem;
+      }
+
+      .endpoint {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 1.5rem;
+        border-radius: 5px;
+      }
+
+      .endpoint-title {
+        margin-top: 0;
+      }
+
+      .method {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+      }
+
+      .post {
+        background-color: #49cc90;
+      }
+      .get {
+        background-color: #61affe;
+      }
+      .put {
+        background-color: #fca130;
+      }
+
+      code {
+        font-family:
+          "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+          monospace;
+        /* background-color: #eef; */
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-size: 0.95em;
+      }
+
+      pre {
+        background-color: #2d2d2d;
+        color: #f8f8f2;
+        padding: 1em;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      .required {
+        color: #c0392b;
+        font-weight: bold;
+      }
+
+      .protected::after {
+        content: "Protected";
+        display: inline-block;
+        margin-left: 10px;
+        padding: 2px 6px;
+        font-size: 0.8em;
+        background-color: #f1c40f;
+        color: #333;
+        border-radius: 3px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>E-Shop REST API Documentation</h1>
+    <p>This document provides documentation for the E-Shop REST API.</p>
+
+    <h2>Authentication</h2>
+    <p>
+      The API uses JWT (JSON Web Tokens) for authentication. After a successful
+      login or registration, a token is sent back in an HTTP-only cookie named
+      <code>bazaar_token</code>. This cookie should be included in subsequent
+      requests to access protected routes.
+    </p>
+
+    <h2>Auth API</h2>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title">
+        <span class="method post">POST</span> /api/v1/auth/register
+      </h3>
+      <p>Registers a new user.</p>
+      <h4>Request Body</h4>
+      <pre><code>{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}</code></pre>
+      <h4>Success Response (201 Created)</h4>
+      <pre><code>{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "profilePicture": "/uploads/default.png",
+    "displayName": "John D",
+    "wishList": []
+  }
+}</code></pre>
+      <p>
+        Sets a <code>bazaar_token</code> cookie and returns a token and user
+        object.
+      </p>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title">
+        <span class="method post">POST</span> /api/v1/auth/login
+      </h3>
+      <p>Logs in an existing user.</p>
+      <h4>Request Body</h4>
+      <pre><code>{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}</code></pre>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "profilePicture": "/uploads/default.png",
+    "displayName": "John D",
+    "wishList": []
+  }
+}</code></pre>
+      <p>
+        Sets a <code>bazaar_token</code> cookie and returns a token and user
+        object.
+      </p>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method get">GET</span> /api/v1/auth/logout
+      </h3>
+      <p>Logs out the current user by clearing the authentication cookie.</p>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "message": "Logged out successfully"
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method get">GET</span> /api/v1/auth/me
+      </h3>
+      <p>Gets the currently authenticated user's profile.</p>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "_id": "60d0fe4f5311236168a109ca",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "profilePicture": "/uploads/default.png",
+    "displayName": "John D",
+    "wishList": []
+  }
+}</code></pre>
+      <p>Returns the user object and a new token in a cookie.</p>
+    </div>
+
+    <h2>Products API</h2>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title">
+        <span class="method get">GET</span> /api/v1/products
+      </h3>
+      <p>Get a list of all products.</p>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "_id": "64e6f1a2b3c4d5e6f7a8b9c0",
+      "name": "Wireless Headphones",
+      "description": "High-quality noise-cancelling headphones.",
+      "price": 199.99,
+      "category": "Electronics",
+      "rating": 4.8,
+      "reviews": "250",
+      "colors": ["Black", "Silver"],
+      "image": "/uploads/headphones.jpg"
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title">
+        <span class="method get">GET</span> /api/v1/products/:id
+      </h3>
+      <p>Get a single product by its ID.</p>
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><code>id</code> <span class="required">required</span></td>
+          <td>The ID of the product.</td>
+        </tr>
+      </table>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "data": {
+    "_id": "64e6f1a2b3c4d5e6f7a8b9c0",
+    "name": "Wireless Headphones",
+    "description": "High-quality noise-cancelling headphones.",
+    "price": 199.99,
+    "category": "Electronics",
+    "rating": 4.8,
+    "reviews": "250",
+    "colors": ["Black", "Silver"],
+    "image": "/uploads/headphones.jpg"
+  }
+}</code></pre>
+    </div>
+
+    <h2>Orders API</h2>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method post">POST</span> /api/v1/orders
+      </h3>
+      <p>Create a new order.</p>
+      <h4>Request Body</h4>
+      <pre><code>{
+  "items": [
+    { "productId": "64e6f1a2b3c4d5e6f7a8b9c0", "quantity": 1 }
+  ],
+  "summary": {
+    "subtotal": 199.99,
+    "shipping": 10.00,
+    "tax": 15.00,
+    "grandTotal": 224.99
+  },
+  "shippingAddress": {
+    "address": "123 Tech Lane",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "USA",
+    "postalCode": "94105"
+  }
+}</code></pre>
+      <h4>Success Response (201 Created)</h4>
+      <pre><code>{
+  "success": true,
+  "data": {
+    "_id": "64e7a1b2c3d4e5f6g7h8i9j0",
+    "userId": "60d0fe4f5311236168a109ca",
+    "status": "pending",
+    "currency": "USD",
+    "items": "[{\"productId\":\"64e6f1a2b3c4d5e6f7a8b9c0\",\"quantity\":1}]",
+    "summary": {
+      "subtotal": 199.99,
+      "shipping": 10.00,
+      "tax": 15.00,
+      "grandTotal": 224.99
+    },
+    "shippingAddress": {
+      "address": "123 Tech Lane",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "postalCode": "94105"
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method get">GET</span> /api/v1/orders
+      </h3>
+      <p>Get all orders for the authenticated user.</p>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "_id": "64e7a1b2c3d4e5f6g7h8i9j0",
+      "userId": "60d0fe4f5311236168a109ca",
+      "status": "pending",
+      "currency": "USD",
+      "items": "[{\"productId\":\"64e6f1a2b3c4d5e6f7a8b9c0\",\"quantity\":1}]",
+      "summary": {
+        "subtotal": 199.99,
+        "shipping": 10.00,
+        "tax": 15.00,
+        "grandTotal": 224.99
+      },
+      "shippingAddress": {
+        "address": "123 Tech Lane",
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA",
+        "postalCode": "94105"
+      }
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method get">GET</span> /api/v1/orders/:id
+      </h3>
+      <p>Get a single order by its ID.</p>
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><code>id</code> <span class="required">required</span></td>
+          <td>The ID of the order.</td>
+        </tr>
+      </table>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "data": {
+    "_id": "64e7a1b2c3d4e5f6g7h8i9j0",
+    "userId": "60d0fe4f5311236168a109ca",
+    "status": "pending",
+    "currency": "USD",
+    "items": "[{\"productId\":\"64e6f1a2b3c4d5e6f7a8b9c0\",\"quantity\":1}]",
+    "summary": {
+      "subtotal": 199.99,
+      "shipping": 10.00,
+      "tax": 15.00,
+      "grandTotal": 224.99
+    },
+    "shippingAddress": {
+      "address": "123 Tech Lane",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "postalCode": "94105"
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method put">PUT</span> /api/v1/orders/:id/cancel
+      </h3>
+      <p>Cancels an order.</p>
+      <h4>URL Parameters</h4>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><code>id</code> <span class="required">required</span></td>
+          <td>The ID of the order to cancel.</td>
+        </tr>
+      </table>
+      <h4>Request Body</h4>
+      <pre><code>{
+  "status": "cancelled"
+}</code></pre>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "data": {
+    "_id": "64e7a1b2c3d4e5f6g7h8i9j0",
+    "status": "cancelled"
+  }
+}</code></pre>
+    </div>
+
+    <h2>Wishlist API</h2>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method get">GET</span> /api/v1/wishlists
+      </h3>
+      <p>Get the wishlist for the authenticated user.</p>
+      <h4>Success Response (200 OK)</h4>
+      <pre><code>{
+  "success": true,
+  "data": [
+    {
+      "_id": "64e8b2c3d4e5f6g7h8i9j0k1",
+      "userId": "60d0fe4f5311236168a109ca",
+      "products": ["64e6f1a2b3c4d5e6f7a8b9c0"]
+    }
+  ]
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3 class="endpoint-title protected">
+        <span class="method post">POST</span> /api/v1/wishlists/toggle
+      </h3>
+      <p>Add or remove a product from the user's wishlist.</p>
+      <h4>Request Body</h4>
+      <pre><code>{
+  "productId": "64e6f1a2b3c4d5e6f7a8b9c0"
+}</code></pre>
+      <h4>Success Response (200 OK or 201 Created)</h4>
+      <pre><code>{
+  "success": true,
+  "data": {
+    "_id": "64e8b2c3d4e5f6g7h8i9j0k1",
+    "userId": "60d0fe4f5311236168a109ca",
+    "products": ["64e6f1a2b3c4d5e6f7a8b9c0"]
+  }
+}</code></pre>
+    </div>
+  </body>
 </html>

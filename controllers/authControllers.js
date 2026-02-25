@@ -54,7 +54,7 @@ const login = asyncHandler(async (req, res) => {
  */
 const logout = asyncHandler(async (req, res) => {
   res
-    .cookie("twitter_token", "", {
+    .cookie("bazaar_token", "", {
       expires: new Date(Date.now() - 1000),
       httpOnly: process.env.NODE_ENV === "production",
       secure: req.secure || req.headers["x-forwarded-proto"] === "https",
