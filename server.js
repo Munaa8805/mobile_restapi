@@ -9,6 +9,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 const authRoutes = require("./routes/authRoutes");
 const productsRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use(
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productsRoutes);
+app.use("/api/v1/orders", orderRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Route not found" });
