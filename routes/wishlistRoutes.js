@@ -3,7 +3,16 @@ const router = express.Router();
 const wishlistControllers = require("../controllers/wishlistControllers");
 const { protect } = require("../middlewares/auth");
 
-router.get("/", protect, wishlistControllers.getWishlists);
-router.post("/", protect, wishlistControllers.toggleToWishlist);
+// Add product
+router.post("/", protect, wishlistControllers.addToWishlist);
+
+// Remove product
+router.delete("/", protect, wishlistControllers.removeFromWishlist);
+
+// Get wishlist
+router.get("/user", protect, wishlistControllers.getWishlist);
+
+// Clear wishlist
+router.delete("/reset", protect, wishlistControllers.clearWishlist);
 
 module.exports = router;

@@ -1,38 +1,71 @@
 const asyncHandler = require("../utils/asyncHandler");
-const Wishlist = require("../models/Wishlist");
+const User = require("../models/User");
 
-const getWishlists = asyncHandler(async (req, res) => {
-  const wishlist = await Wishlist.find({ userId: req.user._id });
-  res.status(200).json({ success: true, data: wishlist });
-});
+const addToWishlist = asyncHandler(async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const { productId } = req.body;
 
-const toggleToWishlist = asyncHandler(async (req, res) => {
-  const { productId } = req.body;
-  if (!productId) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Product ID is required" });
-  }
-  const wishlist = await Wishlist.findOne({ userId: req.user._id });
-  if (!wishlist) {
-    const newWishlist = await Wishlist.create({
-      userId: req.user._id,
-      products: [productId],
-    });
-    return res.status(201).json({ success: true, data: newWishlist });
-  } else {
-    if (wishlist.products.includes(productId)) {
-      wishlist.products = wishlist.products.filter(
-        (id) => id.toString() !== productId.toString(),
-      );
-      await wishlist.save();
-      return res.status(200).json({ success: true, data: wishlist });
-    } else {
-      wishlist.products.push(productId);
-      await wishlist.save();
-      return res.status(200).json({ success: true, data: wishlist });
+        const user = await User.findByIdAndUpdate(
+            userId,
+            { $addToSet: { wishlist: productId } }, // prevents duplicates
+            { new: true }
+        ).populate("wishlist");
+
+        res.status(200).json({ success: true, data: user.wishlist });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
     }
-  }
 });
+const getWishlist = async (req, res) => {
+    try {
+        const userId = req.user._id;
 
-module.exports = { getWishlists, toggleToWishlist };
+        const user = await User.findById(userId).populate("wishlist");
+
+        res.status(200).json({
+            success: true,
+            data: user.wishlist
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+const removeFromWishlist = async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const { productId } = req.body;
+
+        const user = await User.findByIdAndUpdate(
+            userId,
+            { $pull: { wishlist: productId } },
+            { new: true }
+        ).populate("wishlist");
+
+        res.status(200).json({
+            success: true,
+            data: user.wishlist
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+const clearWishlist = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const user = await User.findByIdAndUpdate(
+            userId,
+            { $set: { wishlist: [] } },
+            { new: true }
+        );
+
+        res.status(200).json({ message: "Wishlist cleared", data: user.wishlist });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
+
+module.exports = { addToWishlist, getWishlist, clearWishlist, removeFromWishlist };

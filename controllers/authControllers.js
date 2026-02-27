@@ -95,7 +95,7 @@ const sendTokenResponse = (user, statusCode, req, res) => {
       email: user.email,
       profilePicture: user.profilePicture,
       displayName: user.displayName,
-      wishList: user.wishList,
+      wishList: user.wishlist,
     },
   });
 };

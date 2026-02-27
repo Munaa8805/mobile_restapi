@@ -35,7 +35,12 @@ const userSchema = new mongoose.Schema(
     followersCount: { type: Number, default: 0 },
     followingCount: { type: Number, default: 0 },
     tweetsCount: { type: Number, default: 0 },
-    wishList: { type: [mongoose.Schema.Types.ObjectId], ref: "Product", default: [] },
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
   },
   { timestamps: true },
 );
