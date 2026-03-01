@@ -38,14 +38,7 @@ const toggleToWishlist = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       success: true,
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        profilePicture: user.profilePicture,
-        displayName: user.displayName,
-        wishList: user.wishlist,
-      },
+      user: user,
     }); //Return the wishlist
   } catch (error) {
     console.error(error);
