@@ -6,9 +6,6 @@ const { protect } = require("../middlewares/auth");
 // Add product
 router.post("/", protect, wishlistControllers.toggleToWishlist);
 
-// Get wishlist
-router.get("/user", protect, wishlistControllers.getWishlist);
-
 // Clear wishlist
 router.delete("/reset", protect, wishlistControllers.clearWishlist);
 

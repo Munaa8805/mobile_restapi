@@ -37,7 +37,7 @@ const toggleToWishlist = asyncHandler(async (req, res) => {
     await user.save();
 
     res.status(200).json({
-      message: "Wishlist updated",
+      success: true,
       user: {
         _id: user._id,
         name: user.name,
@@ -52,35 +52,21 @@ const toggleToWishlist = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-const getWishlist = async (req, res) => {
-  try {
-    const userId = req.user._id;
-
-    const user = await User.findById(userId).populate("wishlist");
-
-    res.status(200).json({
-      success: true,
-      data: user.wishlist,
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
 
 const clearWishlist = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.user._id;
 
-    const user = await User.findByIdAndUpdate(
-      userId,
-      { $set: { wishlist: [] } },
-      { new: true },
-    );
+    const user = await User.findById(userId);
 
-    res.status(200).json({ message: "Wishlist cleared", data: user.wishlist });
+    user.wishlist = []; // Clear the wishlist
+
+    await user.save();
+
+    res.status(200).json({ success: true, user: user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-module.exports = { toggleToWishlist, getWishlist, clearWishlist };
+module.exports = { toggleToWishlist, clearWishlist };
