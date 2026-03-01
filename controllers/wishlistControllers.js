@@ -36,9 +36,17 @@ const toggleToWishlist = asyncHandler(async (req, res) => {
     // Save the updated user document
     await user.save();
 
-    res
-      .status(200)
-      .json({ message: "Wishlist updated", wishlist: user.wishlist }); //Return the wishlist
+    res.status(200).json({
+      message: "Wishlist updated",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        profilePicture: user.profilePicture,
+        displayName: user.displayName,
+        wishList: user.wishlist,
+      },
+    }); //Return the wishlist
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
