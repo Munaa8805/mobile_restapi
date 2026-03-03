@@ -25,16 +25,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
       select: false,
     },
-    profilePicture: { type: String, default: "" },
     displayName: { type: String, default: "" },
     bio: { type: String, default: "" },
     avatarUrl: { type: String, default: "" },
     bannerUrl: { type: String, default: "" },
     isVerified: { type: Boolean, default: false },
     isPrivate: { type: Boolean, default: false },
-    followersCount: { type: Number, default: 0 },
-    followingCount: { type: Number, default: 0 },
-    tweetsCount: { type: Number, default: 0 },
     wishlist: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -30,6 +30,7 @@ const getOrderById = asyncHandler(async (req, res) => {
     }
     res.status(200).json({ success: true, data: order });
 });
+
 const cancelOrder = asyncHandler(async (req, res) => {
     try {
         const { status } = req.body;
@@ -60,4 +61,16 @@ const cancelOrder = asyncHandler(async (req, res) => {
 
 });
 
-module.exports = { createOrder, getOrders, getOrderById, cancelOrder };
+
+const updateOrder = asyncHandler(async (req, res) => {
+    const { status } = req.body;
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+        return res.status(404).json({ success: false, message: "Order not found" });
+    }
+    order.status = status;
+    await order.save();
+    res.status(200).json({ success: true, data: order });
+});
+
+module.exports = { createOrder, getOrders, getOrderById, cancelOrder, updateOrder };

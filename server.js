@@ -11,7 +11,8 @@ const authRoutes = require("./routes/authRoutes");
 const productsRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const wishlistRoutes = require("./routes/wishlistRoutes");
-
+const bookRoutes = require("./routes/bookRoutes");
+const { notFound } = require("./middlewares/notFound");
 dotenv.config();
 
 const app = express();
@@ -37,9 +38,8 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productsRoutes);
 app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/wishlists", wishlistRoutes);
-app.use((req, res) => {
-  res.status(404).json({ success: false, message: "Route not found" });
-});
+app.use("/api/v1/books", bookRoutes);
+app.use(notFound);
 app.use(errorHandler);
 
 app.listen(PORT, () => {

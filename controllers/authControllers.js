@@ -74,6 +74,37 @@ const getUser = asyncHandler(async (req, res) => {
   sendTokenResponse(user, 200, req, res);
 });
 
+const updateUser = asyncHandler(async (req, res) => {
+  const { name, email, displayName, bio, avatarUrl, bannerUrl } = req.body;
+  const user = await User.findById(req.user._id);
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+  user.name = name;
+  user.email = email;
+  user.displayName = displayName;
+  user.bio = bio;
+  user.avatarUrl = avatarUrl;
+  user.bannerUrl = bannerUrl;
+  await user.save();
+  sendTokenResponse(user, 200, req, res);
+});
+
+const forgotPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+  user.password = await bcrypt.hash(password, 10);
+
+  await user.save();
+});
+
+
+
+
+
 const signToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
@@ -86,18 +117,12 @@ const sendTokenResponse = (user, statusCode, req, res) => {
     secure: req.secure || req.headers["x-forwarded-proto"] === "https",
     sameSite: "strict",
   });
+  delete user.password;
   res.status(statusCode).json({
     success: true,
     token,
-    user: {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      profilePicture: user.profilePicture,
-      displayName: user.displayName,
-      wishList: user.wishlist,
-    },
+    user: user
   });
 };
 
-module.exports = { register, login, logout, getUser };
+module.exports = { register, login, logout, getUser, updateUser };
