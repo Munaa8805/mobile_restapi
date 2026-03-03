@@ -67,10 +67,11 @@ const logout = asyncHandler(async (req, res) => {
  * Returns the current authenticated user.
  */
 const getUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id).populate("wishlist");
   if (!user) {
     return res.status(404).json({ success: false, message: "User not found" });
   }
+
   sendTokenResponse(user, 200, req, res);
 });
 
