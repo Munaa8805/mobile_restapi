@@ -1,0 +1,21 @@
+[
+    { "name": "Fiction", "slug": "fiction" },
+    { "name": "Non-Fiction", "slug": "non-fiction" },
+    { "name": "Biography", "slug": "biography" },
+    { "name": "History", "slug": "history" },
+    { "name": "Science", "slug": "science" },
+    { "name": "Technology", "slug": "technology" },
+    { "name": "Philosophy", "slug": "philosophy" },
+    { "name": "Religion", "slug": "religion" },
+    { "name": "Art", "slug": "art" },
+    { "name": "Music", "slug": "music" },
+    { "name": "Dance", "slug": "dance" },
+    { "name": "Theater", "slug": "theater" },
+    { "name": "Film", "slug": "film" },
+    { "name": "TV", "slug": "tv" },
+    { "name": "Comics", "slug": "comics" },
+    { "name": "Graphic Novels", "slug": "graphic-novels" },
+    { "name": "Manga", "slug": "manga" },
+    { "name": "Anime", "slug": "anime" },
+    { "name": "Other", "slug": "other" }
+  ]

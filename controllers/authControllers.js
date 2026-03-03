@@ -117,7 +117,7 @@ const sendTokenResponse = (user, statusCode, req, res) => {
     secure: req.secure || req.headers["x-forwarded-proto"] === "https",
     sameSite: "strict",
   });
-  delete user.password;
+  user.password = "********";
   res.status(statusCode).json({
     success: true,
     token,
