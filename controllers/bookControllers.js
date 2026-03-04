@@ -2,11 +2,55 @@ const asyncHandler = require("../utils/asyncHandler");
 const Book = require("../models/Book");
 
 const createBook = asyncHandler(async (req, res) => {
-    const { title, author, description, price, image, category, publishedDate, isbn, pages, language, publisher, stock, reviews } = req.body;
-    if (!title || !author || !description || !price || !image || !category || !publishedDate || !isbn || !pages || !language || !publisher || !stock || !reviews) {
-        return res.status(400).json({ success: false, message: "All fields are required" });
+    const {
+        title,
+        author,
+        description,
+        price,
+        image,
+        category,
+        publishedDate,
+        isbn,
+        pages,
+        language,
+        publisher,
+        stock,
+        reviews,
+    } = req.body;
+    if (
+        !title ||
+        !author ||
+        !description ||
+        !price ||
+        !image ||
+        !category ||
+        !publishedDate ||
+        !isbn ||
+        !pages ||
+        !language ||
+        !publisher ||
+        !stock ||
+        !reviews
+    ) {
+        return res
+            .status(400)
+            .json({ success: false, message: "All fields are required" });
     }
-    const book = await Book.create({ title, author, description, price, image, category, publishedDate, isbn, pages, language, publisher: publisher || "Self-Published", stock: stock || 0, reviews: reviews || 0 });
+    const book = await Book.create({
+        title,
+        author,
+        description,
+        price,
+        image,
+        category,
+        publishedDate,
+        isbn,
+        pages,
+        language,
+        publisher: publisher || "Self-Published",
+        stock: stock || 0,
+        reviews: reviews || 0,
+    });
     res.status(201).json({ success: true, data: book });
 });
 
@@ -15,7 +59,9 @@ const getBooks = asyncHandler(async (req, res) => {
     let limit = 5;
     page = parseInt(req.query.page ? req.query.page : page);
     limit = parseInt(req.query.limit ? req.query.limit : limit);
-    const books = await Book.find().skip((page - 1) * limit).limit(limit);
+    const books = await Book.find()
+        .skip((page - 1) * limit)
+        .limit(limit);
     if (!books) {
         return res.status(404).json({ success: false, message: "No books found" });
     }
@@ -44,5 +90,14 @@ const getBookById = asyncHandler(async (req, res) => {
     res.status(200).json({ success: true, data: book });
 });
 
+const featureBooks = asyncHandler(async (req, res) => {
+    const books = await Book.find({ featured: true });
 
-module.exports = { createBook, getBooks, getBookById };
+    res.status(201).json({
+        success: true,
+        count: books.length,
+        data: books,
+    });
+});
+
+module.exports = { createBook, getBooks, getBookById, featureBooks };
