@@ -59,6 +59,11 @@ const bookSchema = new mongoose.Schema({
         maxlength: 10,
         minlength: 1,
     },
+    feature:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
     language: {
         type: String,
         required: true,

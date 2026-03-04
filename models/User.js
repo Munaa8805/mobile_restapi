@@ -31,6 +31,14 @@ const userSchema = new mongoose.Schema(
     bannerUrl: { type: String, default: "" },
     isVerified: { type: Boolean, default: false },
     isPrivate: { type: Boolean, default: false },
+    phone: { type: String, default: "" },
+    address: { type: String, default: "" },
+    city: { type: String, default: "" },
+    state: { type: String, default: "" },
+    country: { type: String, default: "" },
+    postalCode: { type: String, default: "" },
+    shippingAddress: { type: String, default: "" },
+    billingAddress: { type: String, default: "" },
     wishlist: [
       {
         type: mongoose.Schema.Types.ObjectId,
