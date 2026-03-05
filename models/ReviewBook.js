@@ -21,7 +21,7 @@ const reviewBookSchema = new mongoose.Schema({
     comment: {
         type: String,
         required: true,
-        minlength: 10,
+        minlength: 2,
         maxlength: 250
     },
     createdAt: {
