@@ -28,6 +28,11 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    featured: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     rating: {
       type: Number,
       required: true,

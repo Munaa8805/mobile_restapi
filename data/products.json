@@ -1,0 +1,168 @@
+[
+    {
+      "name": "Bluetooth Speaker Pro",
+      "price": "140.00",
+      "category": "Tech",
+      "rating": "4.7",
+      "reviews": "98",
+      "description": "Portable Bluetooth speaker with deep bass and 24-hour battery life. Waterproof and perfect for outdoor use.",
+      "colors": ["#1A1A1A", "#007AFF", "#FFFFFF"],
+      "sizes": ["One Size"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg",
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg"
+      ],
+      "quantity": "300",
+      "oldPrice": "170",
+      "featured": true
+    },
+    {
+      "name": "Minimalist Backpack",
+      "price": "65.00",
+      "category": "Accessories",
+      "rating": "4.6",
+      "reviews": "75",
+      "description": "Lightweight and durable backpack designed for daily commuting and travel.",
+      "colors": ["#1A1A1A", "#8E8E93"],
+      "sizes": ["One Size"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg"
+      ],
+      "quantity": "180",
+      "featured": false
+    },
+    {
+      "name": "Running Shorts",
+      "price": "29.00",
+      "category": "Clothing",
+      "rating": "4.4",
+      "reviews": "60",
+      "description": "Breathable and flexible running shorts built for comfort and performance.",
+      "colors": ["#1A1A1A", "#34C759"],
+      "sizes": ["S", "M", "L", "XL"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg"
+      ],
+      "quantity": "240",
+      "oldPrice": "40",
+      "featured": false
+    },
+    {
+      "name": "Casual Sneakers",
+      "price": "95.00",
+      "category": "Shoes",
+      "rating": "4.7",
+      "reviews": "132",
+      "description": "Stylish everyday sneakers with soft cushioning and breathable mesh upper.",
+      "colors": ["#FFFFFF", "#1A1A1A"],
+      "sizes": ["38", "39", "40", "41", "42", "43"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg"
+      ],
+      "quantity": "150",
+      "featured": true
+    },
+    {
+      "name": "Smart Fitness Band",
+      "price": "79.00",
+      "category": "Tech",
+      "rating": "4.5",
+      "reviews": "210",
+      "description": "Track your daily steps, heart rate, and sleep patterns with this lightweight fitness band.",
+      "colors": ["#007AFF", "#FF3B30"],
+      "sizes": ["One Size"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/headphones_ijsfal.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg"
+      ],
+      "quantity": "400",
+      "oldPrice": "99",
+      "featured": true
+    },
+    {
+      "name": "Classic Hoodie",
+      "price": "59.00",
+      "category": "Clothing",
+      "rating": "4.6",
+      "reviews": "140",
+      "description": "Warm and cozy hoodie made from premium cotton blend fabric.",
+      "colors": ["#1A1A1A", "#C7C7CC"],
+      "sizes": ["S", "M", "L", "XL"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg"
+      ],
+      "quantity": "210",
+      "featured": false
+    },
+    {
+      "name": "LED Floor Lamp",
+      "price": "120.00",
+      "category": "Home",
+      "rating": "4.8",
+      "reviews": "88",
+      "description": "Modern floor lamp with adjustable brightness and energy-efficient LED lighting.",
+      "colors": ["#FFFFFF", "#1A1A1A"],
+      "sizes": ["One Size"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg"
+      ],
+      "quantity": "95",
+      "oldPrice": "150",
+      "featured": true
+    },
+    {
+      "name": "Wireless Earbuds",
+      "price": "110.00",
+      "category": "Tech",
+      "rating": "4.6",
+      "reviews": "170",
+      "description": "Compact wireless earbuds with noise isolation and fast charging case.",
+      "colors": ["#FFFFFF", "#1A1A1A", "#007AFF"],
+      "sizes": ["One Size"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/headphones_ijsfal.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/headphones_ijsfal.jpg"
+      ],
+      "quantity": "350",
+      "featured": false
+    },
+    {
+      "name": "Training Sneakers",
+      "price": "105.00",
+      "category": "Shoes",
+      "rating": "4.7",
+      "reviews": "110",
+      "description": "Lightweight training shoes designed for gym and daily workouts.",
+      "colors": ["#FF3B30", "#34C759"],
+      "sizes": ["38", "39", "40", "41", "42", "43"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg"
+      ],
+      "quantity": "160",
+      "featured": false
+    },
+    {
+      "name": "Graphic T-Shirt",
+      "price": "39.00",
+      "category": "Clothing",
+      "rating": "4.5",
+      "reviews": "92",
+      "description": "Soft cotton graphic t-shirt with modern printed design.",
+      "colors": ["#FFFFFF", "#8E8E93", "#1A1A1A"],
+      "sizes": ["S", "M", "L", "XL"],
+      "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg",
+      "images": [
+        "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg"
+      ],
+      "quantity": "275",
+      "oldPrice": "49",
+      "featured": true
+    }
+  ]

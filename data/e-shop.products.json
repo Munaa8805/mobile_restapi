@@ -1,0 +1,171 @@
+[{
+  "_id": {
+    "$oid": "699d226b302b85e5abc1476f"
+  },
+  "name": "Wireless Headphones",
+  "price": "250.00",
+  "category": "Tech",
+  "rating": "4.9",
+  "reviews": "210",
+  "description": "Immersive sound quality with active noise cancellation. Wireless freedom with up to 40 hours of battery life.",
+  "colors": [
+    "#1A1A1A",
+    "#FFFFFF",
+    "#007AFF"
+  ],
+  "sizes": [
+    "One Size"
+  ],
+  "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg",
+  "images": [
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg"
+  ],
+  "quantity": "1000",
+  "oldPrice": "270"
+},
+{
+  "_id": {
+    "$oid": "699d226b302b85e5abc14770"
+  },
+  "id": "4",
+  "name": "Modern Desk Lamp",
+  "price": "85.00",
+  "category": "Home",
+  "rating": "4.7",
+  "reviews": "56",
+  "description": "Sleek and efficient LED desk lamp with adjustable brightness and color temperature. Perfect for your modern workspace.",
+  "colors": [
+    "#FFFFFF",
+    "#1A1A1A",
+    "#C7C7CC"
+  ],
+  "sizes": [
+    "One Size"
+  ],
+  "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+  "images": [
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg"
+  ],
+  "quantity": "99"
+},
+{
+  "_id": {
+    "$oid": "699d226b302b85e5abc1476e"
+  },
+  "name": "Cotton T-Shirt",
+  "price": "35.00",
+  "category": "Clothing",
+  "rating": "4.5",
+  "reviews": "89",
+  "description": "A classic organic cotton t-shirt designed for comfort and durability. Features a relaxed fit and premium soft-touch finish.",
+  "colors": [
+    "#FFFFFF",
+    "#1A1A1A",
+    "#8E8E93"
+  ],
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+  ],
+  "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg",
+  "images": [
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/tshirt_uvt0ym.jpg"
+  ],
+  "quantity": "520",
+  "oldPrice": "50"
+},
+{
+  "_id": {
+    "$oid": "699d226b302b85e5abc14771"
+  },
+  "name": "Ultra Boost Sneakers",
+  "price": "85.00",
+  "category": "Shoes",
+  "rating": "4.8",
+  "reviews": "150",
+  "description": "High-performance running shoes with responsive cushioning. Designed for comfort over long distances.",
+  "colors": [
+    "#FF3B30",
+    "#1A1A11A",
+    "#FFFFFF"
+  ],
+  "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43"
+  ],
+  "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
+  "images": [
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg"
+  ],
+  "quantity": "100"
+},
+{
+  "_id": {
+    "$oid": "699d226b302b85e5abc14772"
+  },
+  "name": "Smart Watch Series 7",
+  "price": "199.00",
+  "category": "Tech",
+  "rating": "4.6",
+  "reviews": "320",
+  "description": "Your ultimate health and fitness companion. Features a larger display and faster charging.",
+  "colors": [
+    "#1A1A1A",
+    "#007AFF",
+    "#FF3B30"
+  ],
+  "sizes": [
+    "41mm",
+    "45mm"
+  ],
+  "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/headphones_ijsfal.jpg",
+  "images": [
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg"
+  ],
+  "quantity": "500"
+},
+{
+  "_id": {
+    "$oid": "699d226b302b85e5abc1476d"
+  },
+  "name": "Premium Sneakers",
+  "price": "120.00",
+  "category": "Shoes",
+  "rating": "4.8",
+  "reviews": "124",
+  "description": "Experience unparalleled comfort and style with our Premium Sneakers. Crafted with breathable materials and a reactive sole for everyday performance.",
+  "colors": [
+    "#FF3B30",
+    "#1A1A1A",
+    "#007AFF",
+    "#34C759"
+  ],
+  "sizes": [
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43"
+  ],
+  "image": "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
+  "images": [
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg",
+    "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905164/banner_1_vwunht.jpg"
+  ],
+  "quantity": "214",
+  "oldPrice": "150"
+}]
