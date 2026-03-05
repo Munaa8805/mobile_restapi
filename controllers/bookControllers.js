@@ -55,6 +55,9 @@ const createBook = asyncHandler(async (req, res) => {
     res.status(201).json({ success: true, data: book });
 });
 
+/**
+ * Fetches paginated books with ReviewBook-derived averageRating and reviewCount per book.
+ */
 const getBooks = asyncHandler(async (req, res) => {
     let page = 1;
     let limit = 5;
@@ -62,10 +65,26 @@ const getBooks = asyncHandler(async (req, res) => {
     limit = parseInt(req.query.limit ? req.query.limit : limit);
     const books = await Book.find()
         .skip((page - 1) * limit)
-        .limit(limit);
-    if (!books) {
+        .limit(limit)
+        .lean();
+    if (!books || books.length === 0) {
         return res.status(404).json({ success: false, message: "No books found" });
     }
+    const bookIds = books.map((b) => b._id);
+    const reviewStats = await ReviewBook.aggregate([
+        { $match: { book: { $in: bookIds } } },
+        { $group: { _id: "$book", averageRating: { $avg: "$rating" }, reviewCount: { $sum: 1 } } },
+    ]);
+    const statsByBook = Object.fromEntries(
+        reviewStats.map((s) => [
+            s._id.toString(),
+            { averageRating: Math.round(s.averageRating * 10) / 10, reviewCount: s.reviewCount },
+        ])
+    );
+    const data = books.map((book) => {
+        const stats = statsByBook[book._id.toString()] || { averageRating: 0, reviewCount: 0 };
+        return { ...book, ...stats };
+    });
     const totalBooks = await Book.countDocuments();
     const totalPages = Math.max(1, Math.ceil(totalBooks / limit));
     const previousPage = page > 1 ? page - 1 : null;
@@ -79,7 +98,7 @@ const getBooks = asyncHandler(async (req, res) => {
         totalPages,
         previousPage,
         nextPage,
-        data: books,
+        data,
     });
 });
 
