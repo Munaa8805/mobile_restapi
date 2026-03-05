@@ -1,5 +1,6 @@
 const asyncHandler = require("../utils/asyncHandler");
 const Book = require("../models/Book");
+const ReviewBook = require("../models/ReviewBook");
 
 const createBook = asyncHandler(async (req, res) => {
     const {
@@ -82,12 +83,29 @@ const getBooks = asyncHandler(async (req, res) => {
     });
 });
 
+/**
+ * Fetches a single book by ID and populates its reviews (from ReviewBook model).
+ * Average rating and review count are calculated from ReviewBook; reviews include user ref populated.
+ */
 const getBookById = asyncHandler(async (req, res) => {
     const book = await Book.findById(req.params.id);
     if (!book) {
         return res.status(404).json({ success: false, message: "Book not found" });
     }
-    res.status(200).json({ success: true, data: book });
+    const [reviews, { averageRating, reviewCount }] = await Promise.all([
+        ReviewBook.find({ book: req.params.id })
+            .populate("user", "name email")
+            .sort({ createdAt: -1 })
+            .lean(),
+        Book.getAverageRatingFromReviews(req.params.id),
+    ]);
+    const bookWithReviews = {
+        ...book.toObject(),
+        reviews,
+        averageRating,
+        reviewCount,
+    };
+    res.status(200).json({ success: true, data: bookWithReviews });
 });
 
 const featureBooks = asyncHandler(async (req, res) => {

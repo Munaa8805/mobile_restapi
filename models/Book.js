@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const bookSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -99,7 +100,25 @@ const bookSchema = new mongoose.Schema({
         trim: true,
         maxlength: 100,
         minlength: 10,
-    },
+    }
 }, { timestamps: true });
+
+/**
+ * Computes average rating and review count for a book from ReviewBook collection.
+ * @param {string|mongoose.Types.ObjectId} bookId - Book _id
+ * @returns {Promise<{ averageRating: number, reviewCount: number }>}
+ */
+bookSchema.statics.getAverageRatingFromReviews = async function (bookId) {
+    const ReviewBook = mongoose.model("ReviewBook");
+    const result = await ReviewBook.aggregate([
+        { $match: { book: new mongoose.Types.ObjectId(bookId) } },
+        { $group: { _id: null, avg: { $avg: "$rating" }, count: { $sum: 1 } } },
+    ]);
+    if (!result.length) {
+        return { averageRating: 0, reviewCount: 0 };
+    }
+    const averageRating = Math.round(result[0].avg * 10) / 10;
+    return { averageRating, reviewCount: result[0].count };
+};
 
 module.exports = mongoose.model("Book", bookSchema);

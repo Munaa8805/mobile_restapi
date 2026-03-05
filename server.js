@@ -13,6 +13,7 @@ const orderRoutes = require("./routes/orderRoutes");
 const wishlistRoutes = require("./routes/wishlistRoutes");
 const bookRoutes = require("./routes/bookRoutes");
 const bookCategoryRoutes = require("./routes/bookCategoryRoutes");
+const bookReviewRoutes = require("./routes/bookReviewRoutes");
 const { notFound } = require("./middlewares/notFound");
 
 dotenv.config();
@@ -42,6 +43,7 @@ app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/wishlists", wishlistRoutes);
 app.use("/api/v1/books", bookRoutes);
 app.use("/api/v1/book-categories", bookCategoryRoutes);
+app.use("/api/v1/book-reviews", bookReviewRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
