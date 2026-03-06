@@ -103,6 +103,11 @@ const bookSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+// Index frequently queried fields for performance.
+bookSchema.index({ featured: 1 });
+bookSchema.index({ category: 1 });
+bookSchema.index({ isbn: 1 });
+
 /**
  * Computes average rating and review count for a book from ReviewBook collection.
  * @param {string|mongoose.Types.ObjectId} bookId - Book _id

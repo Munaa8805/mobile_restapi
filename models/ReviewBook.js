@@ -30,4 +30,8 @@ const reviewBookSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
+// Index frequently queried fields for performance.
+reviewBookSchema.index({ book: 1 });
+reviewBookSchema.index({ user: 1, book: 1 });
+
 module.exports = mongoose.model("ReviewBook", reviewBookSchema);

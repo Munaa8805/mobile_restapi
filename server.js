@@ -15,7 +15,7 @@ const bookRoutes = require("./routes/bookRoutes");
 const bookCategoryRoutes = require("./routes/bookCategoryRoutes");
 const bookReviewRoutes = require("./routes/bookReviewRoutes");
 const reviewProductRoutes = require("./routes/reviewProductRoutes");
-const { notFound } = require("./middlewares/notFound");
+const notFound = require("./middlewares/notFound");
 
 dotenv.config();
 

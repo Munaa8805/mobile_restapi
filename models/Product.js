@@ -80,6 +80,11 @@ const productSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+// Index frequently queried fields for performance.
+productSchema.index({ featured: 1 });
+productSchema.index({ category: 1 });
+productSchema.index({ name: 1 });
+
 /**
  * Computes average rating and review count for a product from ReviewProduct collection.
  * @param {string|mongoose.Types.ObjectId} productId - Product _id

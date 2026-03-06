@@ -75,6 +75,9 @@ const getUser = asyncHandler(async (req, res) => {
   sendTokenResponse(user, 200, req, res);
 });
 
+/**
+ * Updates the authenticated user's basic profile fields (name, email, display info).
+ */
 const updateUser = asyncHandler(async (req, res) => {
   const { name, email, displayName, bio, avatarUrl, bannerUrl } = req.body;
   const user = await User.findById(req.user._id);
@@ -91,21 +94,12 @@ const updateUser = asyncHandler(async (req, res) => {
   sendTokenResponse(user, 200, req, res);
 });
 
-const forgotPassword = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ email }).select("+password");
-  if (!user) {
-    return res.status(404).json({ success: false, message: "User not found" });
-  }
-  user.password = await bcrypt.hash(password, 10);
-
-  await user.save();
-});
-
-
-
-
-
+// NOTE: forgotPassword flow is intentionally not implemented yet.
+// When implemented, it should:
+// - Accept an email
+// - Generate a secure, time-limited reset token
+// - Send a reset link via email
+// - Provide a separate endpoint to set a new password using the token
 const signToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };

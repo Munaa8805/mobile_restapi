@@ -30,5 +30,9 @@ const reviewProductSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
+// Index frequently queried fields for performance.
+reviewProductSchema.index({ product: 1 });
+reviewProductSchema.index({ user: 1, product: 1 });
+
 module.exports =
     mongoose.models.ReviewProduct || mongoose.model("ReviewProduct", reviewProductSchema);
