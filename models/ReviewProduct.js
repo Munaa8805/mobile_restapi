@@ -34,5 +34,4 @@ const reviewProductSchema = new mongoose.Schema({
 reviewProductSchema.index({ product: 1 });
 reviewProductSchema.index({ user: 1, product: 1 });
 
-module.exports =
-    mongoose.models.ReviewProduct || mongoose.model("ReviewProduct", reviewProductSchema);
+module.exports = mongoose.model("ReviewProduct", reviewProductSchema);
