@@ -5,7 +5,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Rest API for E-Shop",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
