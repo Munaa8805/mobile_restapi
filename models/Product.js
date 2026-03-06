@@ -80,4 +80,22 @@ const productSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+/**
+ * Computes average rating and review count for a product from ReviewProduct collection.
+ * @param {string|mongoose.Types.ObjectId} productId - Product _id
+ * @returns {Promise<{ averageRating: number, reviewCount: number }>}
+ */
+productSchema.statics.getAverageRatingFromReviews = async function (productId) {
+  const ReviewProduct = mongoose.model("ReviewProduct");
+  const result = await ReviewProduct.aggregate([
+    { $match: { product: new mongoose.Types.ObjectId(productId) } },
+    { $group: { _id: null, avg: { $avg: "$rating" }, count: { $sum: 1 } } },
+  ]);
+  if (!result.length) {
+    return { averageRating: 0, reviewCount: 0 };
+  }
+  const averageRating = Math.round(result[0].avg * 10) / 10;
+  return { averageRating, reviewCount: result[0].count };
+};
+
 module.exports = mongoose.model("Product", productSchema);
